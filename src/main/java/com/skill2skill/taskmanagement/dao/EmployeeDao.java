@@ -1,14 +1,17 @@
 package com.skill2skill.taskmanagement.dao;
 
 import com.skill2skill.taskmanagement.model.Employee;
+import com.skill2skill.taskmanagement.repository.CompanyRepository;
 import com.skill2skill.taskmanagement.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,8 +20,10 @@ import java.util.function.Function;
 
 @Repository
 @Primary
-public class EmployeeDao implements EmployeeRepository {
+@Component
+public  class EmployeeDao implements EmployeeRepository {
 
+    @Autowired
     private final EmployeeRepository employeeRepository;
 
     @Autowired
@@ -113,6 +118,7 @@ public class EmployeeDao implements EmployeeRepository {
         return employeeRepository.save(entity);
     }
 
+
     @Override
     public <S extends Employee> List<S> saveAll(Iterable<S> entities) {
         return employeeRepository.saveAll(entities);
@@ -176,5 +182,11 @@ public class EmployeeDao implements EmployeeRepository {
     @Override
     public Page<Employee> findAll(Pageable pageable) {
         return employeeRepository.findAll(pageable);
+    }
+
+
+    @Override
+    public Employee findByPassword(String password) {
+        return employeeRepository.findByPassword(password);
     }
 }

@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.namespace.QName;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "Employee")
-@Table(name = "employee")
+@Table(name = "employee",uniqueConstraints=@UniqueConstraint(columnNames = "email"))
 public class Employee {
 
     @Id
@@ -20,6 +22,12 @@ public class Employee {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name="email")
+    private String email;
+    @Column(name="password")
+    private  String password;
+    @Column(name ="Role")
+    private  String Role;
+    @Column(name = "Department")
+    private String Department;
 }
