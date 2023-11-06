@@ -4,30 +4,37 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-import javax.xml.namespace.QName;
+import java.time.LocalDateTime;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity(name = "Employee")
-@Table(name = "employee",uniqueConstraints=@UniqueConstraint(columnNames = "email"))
+@Table(name = "employee")
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    private Integer employeeId;
+    @Column(name ="company_Name")
+    private String companyName;
+    @Column(name ="department_Name")
+    private String departmentName;
+    @Column(name ="designation_Name")
+    private String designationName;
+    @Column(name = "employee_Name")
+    private String employeeName;
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+    @Column(name = "updated_by")
+    private Integer updatedBy;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    @Column(name = "created_by")
+    private Integer createdBy;
+    @Column(name ="employee_status")
+    private Integer employeeStatus;
 
-    @Column(name = "name")
-    private String name;
 
-    @Column(name="email")
-    private String email;
-    @Column(name="password")
-    private  String password;
-    @Column(name ="Role")
-    private  String Role;
-    @Column(name = "Department")
-    private String Department;
 }
